@@ -7,6 +7,7 @@ const path = require("path");
 // Constants:
 const app = express();
 
+// The filepath is to the entire assets folder
 const filepath = path.join(__dirname, "../app/dist");
 
 // Middleware:
@@ -19,11 +20,10 @@ const logRoutes = (req, res, next) => {
 // Register the logRoutes middleware globally to log all requests
 app.use(logRoutes);
 
-// Other endpoints and controllers
-
 // The `express.static()` middleware serves the static assets in the React application's `dist/` folder.
 app.use(express.static(filepath));
 
+// Other endpoints and controllers:
 // Controllers:
 // 1. Create a `GET /api/picture` endpoint
 app.get("/api/picture", (req, res) =>
