@@ -10,6 +10,17 @@ const app = express();
 const filepath = path.join(__dirname, "../app/dist");
 
 // Middleware:
+// Middleware function for logging route requests
+const logRoutes = (req, res, next) => {
+  const time = new Date().toLocaleString();
+  console.log(`${req.method}: ${req.originalUrl} - ${time}`);
+  next(); // Passes the request to the next middleware/controller
+};
+// Register the logRoutes middleware globally to log all requests
+app.use(logRoutes);
+
+// Other endpoints and controllers
+
 // The `express.static()` middleware serves the static assets in the React application's `dist/` folder.
 app.use(express.static(filepath));
 
